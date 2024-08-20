@@ -26,6 +26,7 @@ public class CharacterMovementManager : MonoBehaviour
     {
         if (isJoystickEnabled)
         {
+            //Debug.Log("Joystick active");
             var movementDirection = new Vector3(joystick.Direction.x, 0.0f, joystick.Direction.y);
             characterController.SimpleMove(movementDirection * movementSpeed);
 
