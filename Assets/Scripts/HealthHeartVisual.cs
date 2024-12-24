@@ -6,18 +6,18 @@ public class HealthHeartVisual : MonoBehaviour
 {
     [SerializeField] private GameObject heartPrefab;
     
-    public PlayerHealth playerHealth;
+    public Player Player;
 
     List<HealthHeart> hearts = new List<HealthHeart>();
 
     private void OnEnable()
     {
-        PlayerHealth.OnPlayerDamaged += DrawHearts;
+        Player.OnPlayerDamaged += DrawHearts;
     }
 
     private void OnDisable()
     {
-        PlayerHealth.OnPlayerDamaged -= DrawHearts;
+        Player.OnPlayerDamaged -= DrawHearts;
     }
 
     private void Start()
@@ -39,14 +39,14 @@ public class HealthHeartVisual : MonoBehaviour
     {
         ClearHearts();
 
-        for (int i = 0; i < playerHealth.maxHealth; i++)
+        for (int i = 0; i < Player.maxHealth; i++)
         {
             CreateEmptyHeart();
         }
 
         for (int i = 0; i < hearts.Count; i++)
         {
-            int heartStatusRemainder = Mathf.Clamp(playerHealth.health - i, 0, 1);
+            int heartStatusRemainder = Mathf.Clamp(Player.health - i, 0, 1);
             hearts[i].SetHeartImage((HeartStatus)heartStatusRemainder);
         }
     }
